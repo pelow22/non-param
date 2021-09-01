@@ -1,3 +1,6 @@
+#fonte: http://www.sthda.com/english/wiki/kruskal-wallis-test-in-r
+
+
 library(dplyr)
 library(ggpubr)
 #carregar a tabela
@@ -63,22 +66,19 @@ kruskal.test(Total ~ veg, data = my_data2)
 #comparação par a par entre as formações vegetais.
 
 pairwise.wilcox.test(my_data2$Total, my_data2$veg,
-                     p.adjust.method = "BH")
+                     p.adjust.method = "none")
 
 #Pairwise comparisons using Wilcoxon rank sum test with continuity correction
 
 #data:  my_data2$Total and my_data2$veg
 
-#Estepe  Floresta Estacional Semidecidual Floresta Ombrofila Densa
-#Floresta Estacional Semidecidual 0.00031 -                                -
-#Floresta Ombrofila Densa         0.89810 0.04082                          -
-#Floresta Ombrofila Mista         0.06222 < 2e-16                          0.45455
-#Savana                           0.08385 0.04082                          0.45455
-#Floresta Ombrofila Mista
-#Floresta Estacional Semidecidual -
-#Floresta Ombrofila Densa         -
-#Floresta Ombrofila Mista         -
-#Savana                           0.74104
+#                                 Estepe  Floresta Estacional Semidecidual Floresta Ombrofila Densa Floresta Ombrofila Mista
+#Floresta Estacional Semidecidual 6.2e-05 -                                -                        -
+#Floresta Ombrofila Densa         0.898   0.016                            -                        -
+#Floresta Ombrofila Mista         0.031   < 2e-16                          0.330                    -
+#Savana                           0.050   0.014                            0.364                    0.667
 
-#P value adjustment method: BH
+#P value adjustment method: none
+
+#Formações diferentes quanto: EST x FES; FES x FOD; FES x FOM; FES x SAV
 
